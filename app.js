@@ -1,8 +1,10 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const path   = require('path')
-const morgan = require('morgan')
+const path      = require('path')
+const express   = require('express')
+const dotenv    = require('dotenv')
+const morgan    = require('morgan')
+const exphbs    = require('express-handlebars');
 const connectDB = require('./config/db')
+
 
 //load config firstly
 dotenv.config({path:  path.join(__dirname,'config','config.env')})
@@ -16,6 +18,16 @@ const app = express();
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
+
+// handlebars
+app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
+app.set('view engine', '.hbs');
+
+//Static folder
+app.use(express.static(path.join(__dirname,'public')))
+
+//Routes
+app.use('/', require('./routes/index'))
 
 /* get port from env or 3000 as default*/
 const PORT = process.env.PORT || 3000;
