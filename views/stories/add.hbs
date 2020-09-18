@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-content">
+            <span class="card-title">New story</span>
+        <div class="section">
+            <div class="row">
+                <form class="col s12" action="/stories" method="POST">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="title" type="text" name="title" class="validate">
+                            <label for="title">Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select name="status" id="status">
+                                <option value="" disabled selected>Choose story status</option>
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                            <label>Status</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea name="body" id="body" class="materialize-textarea" data-length="120"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="btn waves-effect waves-light" type="submit">
+                        Submit
+                        <i class="fas fa-paper-plane right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

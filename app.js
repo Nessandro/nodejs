@@ -22,6 +22,11 @@ connectDB();
 /** init app with express*/
 const app = express();
 
+/** add body parser */
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
+
 /** morgan logger on dev mode */
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
@@ -52,6 +57,7 @@ app.use(express.static(path.join(__dirname,'public')))
 /** routes */
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+app.use('/stories', require('./routes/stories'))
 
 /** get port from env or 3000 as default*/
 const PORT = process.env.PORT || 3000;
