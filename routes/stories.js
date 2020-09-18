@@ -14,19 +14,37 @@ router.get('/add', ensureAuth, (req, res) => {
 
 /**
  * @desc    show story
- * @route   GET /
+ * @route   GET /:id
  */
 
 router.get('/:id', ensureAuth, (req, res) => {
     
     try{
-        
     }catch (e) {
-        
     }
-    
    console.log(req.params);
-   res.redirect('/')
+   // res.redirect('/')
+})
+
+/**
+ * @desc    show all stories
+ * @route   GET /
+ */
+
+router.get('/', ensureAuth, async (req, res) => {
+    try{
+        const stories = await Story.find({ status: 'public' })
+            .populate('user')
+            .sort({createdAt: 'desc'})
+            .lean()
+
+
+        res.render('stories/index',{stories})
+    }catch (e) {
+        console.error(e);
+        res.render('error/500')
+    }
+
 })
 
 /**
