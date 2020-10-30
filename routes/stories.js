@@ -56,7 +56,7 @@ router.get('/:id', ensureAuth, async (req, res) => {
             return res.render('error/404')
         }
 
-        if(story.user != req.user.id  && story.status !== 'public') {
+        if(story.user._id != req.user.id  && story.status !== 'public') {
             return res.render('error/403')
         }
 
@@ -84,7 +84,7 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
             return res.render('error/404')
         }
 
-        if(story.user != req.user.id){
+        if(story.user._id != req.user.id){
             return res.render('error/403')
         }
 
@@ -110,7 +110,7 @@ router.put('/edit/:id', ensureAuth, async (req, res) => {
             return res.render('error/404')
         }
 
-        if(story.user != req.user.id){
+        if(story.user._id != req.user.id){
             return res.render('error/403')
         }
 
@@ -141,7 +141,7 @@ router.delete('/:id', ensureAuth, async (req, res) => {
             return res.render('error/404')
         }
 
-        if(story.user != req.user.id){
+        if(story.user._id != req.user.id){
             return res.render('error/403')
         }
 
